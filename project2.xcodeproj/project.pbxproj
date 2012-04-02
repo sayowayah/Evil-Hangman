@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1516FC8F151E4C8B00274A30 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1516FC8E151E4C8B00274A30 /* words.plist */; };
 		154F3FDB151C7B7D00C09707 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154F3FDA151C7B7D00C09707 /* UIKit.framework */; };
 		154F3FDD151C7B7D00C09707 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154F3FDC151C7B7D00C09707 /* Foundation.framework */; };
 		154F3FDF151C7B7D00C09707 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154F3FDE151C7B7D00C09707 /* CoreGraphics.framework */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1516FC8E151E4C8B00274A30 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
 		154F3FD6151C7B7D00C09707 /* project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		154F3FDA151C7B7D00C09707 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		154F3FDC151C7B7D00C09707 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -132,6 +134,7 @@
 		154F3FE1151C7B7D00C09707 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1516FC8E151E4C8B00274A30 /* words.plist */,
 				154F3FE2151C7B7D00C09707 /* project2-Info.plist */,
 				154F3FE3151C7B7D00C09707 /* InfoPlist.strings */,
 				154F3FE6151C7B7D00C09707 /* main.m */,
@@ -232,6 +235,7 @@
 				154F3FE5151C7B7D00C09707 /* InfoPlist.strings in Resources */,
 				154F3FF4151C7B7D00C09707 /* MainViewController.xib in Resources */,
 				154F3FF7151C7B7D00C09707 /* FlipsideViewController.xib in Resources */,
+				1516FC8F151E4C8B00274A30 /* words.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +451,7 @@
 				154F4011151C7B7D00C09707 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		154F4012151C7B7D00C09707 /* Build configuration list for PBXNativeTarget "project2Tests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +460,7 @@
 				154F4014151C7B7D00C09707 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
