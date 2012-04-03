@@ -10,6 +10,9 @@
 
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
 
+@property (nonatomic, strong) NSMutableDictionary *sortedWords;
+
 - (IBAction)showInfo:(id)sender;
+- (void)play:(NSString*)letter;
 
 @end
