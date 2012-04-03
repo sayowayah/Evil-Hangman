@@ -101,6 +101,7 @@
   
   // TODO: replace this with user input
   NSString *letter = [self.textField.text lowercaseString];
+  //NSString *letter = self.textField.text;
 
   //NSLog( printf%s, letter) );
   NSLog(@"letter entered: %@",letter);
@@ -113,11 +114,11 @@
   [self.activeWords addObjectsFromArray:tempArray];
 
   // check if new array of words contains the letter
-  if ([[self.activeWords objectAtIndex:1] rangeOfString:letter].location!=NSNotFound){
+  if ([[[self.activeWords objectAtIndex:1] lowercaseString] rangeOfString:letter].location!=NSNotFound){
     // update the blanks to reflect the new word
       
       // take the first activeword
-      NSString *word = [self.activeWords objectAtIndex:0];
+      NSString *word = [[self.activeWords objectAtIndex:0] lowercaseString];
               
       // iterate through word
       for (int j=0; j<word.length; j++) {
