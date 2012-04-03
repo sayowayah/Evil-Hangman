@@ -11,8 +11,10 @@
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary *sortedWords;
+@property (nonatomic, strong) NSMutableArray *activeWords;
 
 - (IBAction)showInfo:(id)sender;
-- (void)play:(NSString*)letter;
+- (void)startGame;
+- (void)playLetter:(NSString*)letter;
 
 @end
