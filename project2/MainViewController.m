@@ -47,8 +47,6 @@
         [sortedWords setObject:array forKey:[NSString stringWithFormat:@"%d", [word length]]];
       }
     }
-    
-    [self startGame];
   }
   return self;
 }
@@ -56,6 +54,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+    [self startGame];
   
 }
 
