@@ -8,6 +8,12 @@
 
 #import "FlipsideViewController.h"
 
+@protocol StrategyDelegate
+
+- (NSMutableArray*)playLetter:(NSString*)letter withArray:(NSMutableArray*)array;
+
+@end
+
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary *sortedWords;

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1516FC8F151E4C8B00274A30 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1516FC8E151E4C8B00274A30 /* words.plist */; };
+		1521DC7A152AABD700B2B5EA /* EvilGameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 1521DC79152AABD700B2B5EA /* EvilGameplay.m */; };
 		154F3FDB151C7B7D00C09707 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154F3FDA151C7B7D00C09707 /* UIKit.framework */; };
 		154F3FDD151C7B7D00C09707 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154F3FDC151C7B7D00C09707 /* Foundation.framework */; };
 		154F3FDF151C7B7D00C09707 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154F3FDE151C7B7D00C09707 /* CoreGraphics.framework */; };
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		1516FC8E151E4C8B00274A30 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
+		1521DC78152AABD700B2B5EA /* EvilGameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvilGameplay.h; sourceTree = "<group>"; };
+		1521DC79152AABD700B2B5EA /* EvilGameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvilGameplay.m; sourceTree = "<group>"; };
 		154F3FD6151C7B7D00C09707 /* project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		154F3FDA151C7B7D00C09707 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		154F3FDC151C7B7D00C09707 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -129,6 +132,8 @@
 				154F3FF2151C7B7D00C09707 /* MainViewController.xib */,
 				154F3FF5151C7B7D00C09707 /* FlipsideViewController.xib */,
 				154F3FE1151C7B7D00C09707 /* Supporting Files */,
+				1521DC78152AABD700B2B5EA /* EvilGameplay.h */,
+				1521DC79152AABD700B2B5EA /* EvilGameplay.m */,
 			);
 			path = project2;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				154F3FEB151C7B7D00C09707 /* AppDelegate.m in Sources */,
 				154F3FEE151C7B7D00C09707 /* MainViewController.m in Sources */,
 				154F3FF1151C7B7D00C09707 /* FlipsideViewController.m in Sources */,
+				1521DC7A152AABD700B2B5EA /* EvilGameplay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
