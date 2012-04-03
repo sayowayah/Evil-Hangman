@@ -17,6 +17,7 @@
 			<string>IBUIToolbar</string>
 			<string>IBProxyObject</string>
 			<string>IBUITextField</string>
+			<string>IBUIProgressView</string>
 			<string>IBUIButton</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -74,7 +75,7 @@
 					<object class="IBUIButton" id="534186511">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{145, 197}, {109, 30}}</string>
+						<string key="NSFrame">{{135, 197}, {109, 30}}</string>
 						<reference key="NSSuperview" ref="883825266"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -167,7 +168,7 @@
 					<object class="IBUILabel" id="714109410">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{19, 158}, {293, 21}}</string>
+						<string key="NSFrame">{{19, 155}, {293, 21}}</string>
 						<reference key="NSSuperview" ref="883825266"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
@@ -194,7 +195,7 @@
 					<object class="IBUILabel" id="887044319">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{86, 124}, {149, 33}}</string>
+						<string key="NSFrame">{{86, 112}, {149, 33}}</string>
 						<reference key="NSSuperview" ref="883825266"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
@@ -249,7 +250,7 @@
 					<object class="IBUITextField" id="269376097">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{86, 196}, {51, 31}}</string>
+						<string key="NSFrame">{{76, 196}, {51, 31}}</string>
 						<reference key="NSSuperview" ref="883825266"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:304</string>
@@ -280,6 +281,17 @@
 							<double key="NSSize">14</double>
 							<int key="NSfFlags">16</int>
 						</object>
+					</object>
+					<object class="IBUIProgressView" id="743698441">
+						<reference key="NSNextResponder" ref="883825266"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{20, 179}, {280, 9}}</string>
+						<reference key="NSSuperview" ref="883825266"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:677</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<float key="IBUIProgress">0.5</float>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -367,11 +379,12 @@
 							<reference ref="32298257"/>
 							<reference ref="336164559"/>
 							<reference ref="247624000"/>
-							<reference ref="887044319"/>
 							<reference ref="161865148"/>
-							<reference ref="714109410"/>
-							<reference ref="269376097"/>
+							<reference ref="887044319"/>
 							<reference ref="534186511"/>
+							<reference ref="269376097"/>
+							<reference ref="743698441"/>
+							<reference ref="714109410"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -435,6 +448,11 @@
 						<reference key="object" ref="269376097"/>
 						<reference key="parent" ref="883825266"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">61</int>
+						<reference key="object" ref="743698441"/>
+						<reference key="parent" ref="883825266"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -456,12 +474,13 @@
 				<string key="51.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="52.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="53.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="61.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">58</int>
+			<int key="maxID">61</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

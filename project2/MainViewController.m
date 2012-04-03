@@ -61,6 +61,7 @@
 - (void)startGame {
   // TODO: reset counter to 0
   
+  
   int wordLength = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
 
   // TODO: dynamically create slots based on |wordLength|

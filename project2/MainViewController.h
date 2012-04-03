@@ -23,6 +23,7 @@
 @property (nonatomic, strong) IBOutlet UILabel* label;
 @property (nonatomic, strong) IBOutlet UITextField* textField;
 @property (nonatomic, strong) IBOutlet UIButton* button;
+@property (nonatomic, strong) IBOutlet UIProgressView* progress;
 
 - (IBAction)buttonPressed:(id)sender;
 
