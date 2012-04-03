@@ -59,11 +59,12 @@
 }
 
 - (void)startGame {
-  // TODO: clear out the text label
-  
   // TODO: reset counter to 0
   
   int wordLength = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
+
+  // TODO: dynamically create slots based on |wordLength|
+  self.label.text = @"_ _ _ _";
   
   // cast word length int into a NSString, which is the type of the keys in sortedWords dictionary
   NSString *wordLengthString = [NSString stringWithFormat:@"%d", wordLength];
