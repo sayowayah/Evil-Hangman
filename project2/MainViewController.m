@@ -18,6 +18,11 @@
 @synthesize sortedWords = _sortedWords;
 @synthesize activeWords = _activeWords;
 @synthesize maxGuesses = _maxGuesses;
+@synthesize remainingGuesses = _remainingGuesses;
+@synthesize label = _label;
+@synthesize textField = _textField;
+@synthesize button = _button;
+@synthesize progress = _progress;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +31,7 @@
     
     // load plist file into array
     NSMutableArray *words = [[NSMutableArray alloc] initWithContentsOfFile:
-                             [[NSBundle mainBundle] pathForResource:@"small" ofType:@"plist"]];
+                            [[NSBundle mainBundle] pathForResource:@"small" ofType:@"plist"]];
     
     
     
@@ -59,7 +64,10 @@
 }
 
 - (void)startGame {
+  self.progress.progress = (float) 1.0;
   self.maxGuesses = [[NSUserDefaults standardUserDefaults] integerForKey:@"maxGuesses"];
+  self.remainingGuesses = self.maxGuesses;
+  
   
   int wordLength = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
 
@@ -75,10 +83,7 @@
 
 }
 
-// mike's stuff
-@synthesize label = _label;
-@synthesize textField = _textField;
-@synthesize button = _button;
+
 
 - (void)buttonPressed:(id)sender
 {
@@ -142,7 +147,17 @@
     }
   }
   else {
-    self.maxGuesses -= 1;
+    
+    // calculate the % remaining
+    float progressDecimal = (float) (self.remainingGuesses - 1) / (float) self.maxGuesses;
+      
+
+      
+    // update the progress indicator  
+    self.progress.progress = progressDecimal;
+      
+    // update remaining guesses  
+    self.remainingGuesses--;
 }
     
     // clear out the textfield

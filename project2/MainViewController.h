@@ -19,11 +19,13 @@
 @property (nonatomic, strong) NSMutableDictionary *sortedWords;
 @property (nonatomic, strong) NSMutableArray *activeWords;
 @property (nonatomic, assign) int maxGuesses;
+@property (nonatomic, assign) int remainingGuesses;
 
 
-@property (nonatomic, strong) IBOutlet UILabel* label;
-@property (nonatomic, strong) IBOutlet UITextField* textField;
-@property (nonatomic, strong) IBOutlet UIButton* button;
+@property (nonatomic, weak) IBOutlet UILabel* label;
+@property (nonatomic, weak) IBOutlet UITextField* textField;
+@property (nonatomic, weak) IBOutlet UIButton* button;
+@property (nonatomic, weak) IBOutlet UIProgressView* progress;
 
 - (IBAction)buttonPressed:(id)sender;
 
