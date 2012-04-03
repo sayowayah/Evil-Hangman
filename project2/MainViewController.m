@@ -18,7 +18,29 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+  
+  // load plist file into array
+  NSMutableArray *words = [[NSMutableArray alloc] initWithContentsOfFile:
+                                [[NSBundle mainBundle] pathForResource:@"small" ofType:@"plist"]];
+
+  // create dictionary to store array of words with word length as key
+  NSMutableDictionary *sortedWords = [[NSMutableDictionary alloc] init];
+  
+  for (NSString *word in words) {
+    // create NSString object of word length to serve as keys
+    NSString *intString = [NSString stringWithFormat:@"%d", [word length]];
+    if ([sortedWords objectForKey:intString]){
+      // add word to the array in the dictionary
+      [[sortedWords objectForKey:intString] addObject:word];
+    }
+    else{
+      // create new array with word and add key value pair to dictionary
+      NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:word, nil];
+      [sortedWords setObject:array forKey:[NSString stringWithFormat:@"%d", [word length]]];
+    }
+  // TODO: cut down words of set length, chosen in the settings    
+  }
+  
 }
 
 - (void)viewDidUnload

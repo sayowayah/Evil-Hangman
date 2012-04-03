@@ -23,6 +23,7 @@
 		154F4001151C7B7D00C09707 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154F3FDC151C7B7D00C09707 /* Foundation.framework */; };
 		154F4009151C7B7D00C09707 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 154F4007151C7B7D00C09707 /* InfoPlist.strings */; };
 		154F400C151C7B7D00C09707 /* project2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 154F400B151C7B7D00C09707 /* project2Tests.m */; };
+		1582FA5C152A30D500289C85 /* small.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1582FA5B152A30D500289C85 /* small.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		154F4008151C7B7D00C09707 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		154F400A151C7B7D00C09707 /* project2Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = project2Tests.h; sourceTree = "<group>"; };
 		154F400B151C7B7D00C09707 /* project2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = project2Tests.m; sourceTree = "<group>"; };
+		1582FA5B152A30D500289C85 /* small.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = small.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		154F3FE1151C7B7D00C09707 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1582FA5B152A30D500289C85 /* small.plist */,
 				1516FC8E151E4C8B00274A30 /* words.plist */,
 				154F3FE2151C7B7D00C09707 /* project2-Info.plist */,
 				154F3FE3151C7B7D00C09707 /* InfoPlist.strings */,
@@ -236,6 +239,7 @@
 				154F3FF4151C7B7D00C09707 /* MainViewController.xib in Resources */,
 				154F3FF7151C7B7D00C09707 /* FlipsideViewController.xib in Resources */,
 				1516FC8F151E4C8B00274A30 /* words.plist in Resources */,
+				1582FA5C152A30D500289C85 /* small.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
