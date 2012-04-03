@@ -17,6 +17,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+  // initialize defaults
+  NSString *dateKey    = @"dateKey";
+  NSDate *lastRead    = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:dateKey];
+  if (lastRead == nil)     // App first run: set up user defaults.
+  {
+    NSDictionary *appDefaults  = [NSDictionary dictionaryWithObjectsAndKeys:[NSDate date], dateKey, nil];
+    
+    // do any other initialization you want to do here - e.g. the starting default values.    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"evilMode"];
+    [[NSUserDefaults standardUserDefaults] setInteger:4 forKey:@"wordLength"];
+    [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"maxGuesses"];
+    
+    // sync the defaults to disk
+    [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
+  [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
+  
+  
+  
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
   self.mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];

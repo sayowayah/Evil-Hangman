@@ -27,6 +27,8 @@
     NSMutableArray *words = [[NSMutableArray alloc] initWithContentsOfFile:
                              [[NSBundle mainBundle] pathForResource:@"small" ofType:@"plist"]];
     
+    
+    
     // create dictionary to store array of words with word length as key
     NSMutableDictionary *sortedWords = [[NSMutableDictionary alloc] init];
     self.sortedWords = sortedWords;
@@ -44,6 +46,8 @@
         [sortedWords setObject:array forKey:[NSString stringWithFormat:@"%d", [word length]]];
       }
     }
+    
+    [self startGame];
   }
   return self;
 }
@@ -55,8 +59,12 @@
 }
 
 - (void)startGame {
-  // TODO: get word length from the settings
-  int wordLength = 4;
+  // TODO: clear out the text label
+  
+  // TODO: reset counter to 0
+  
+  int wordLength = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
+  
   // cast word length int into a NSString, which is the type of the keys in sortedWords dictionary
   NSString *wordLengthString = [NSString stringWithFormat:@"%d", wordLength];
   
