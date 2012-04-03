@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "EvilGameplay.h"
 
 @interface MainViewController ()
 
@@ -65,6 +66,38 @@
 
 }
 
+
+- (IBAction)play:(id)sender{
+
+  /*
+  int wordLength = 4;
+  // cast word length int into a NSString, which is the type of the keys in sortedWords dictionary
+  NSString *wordLengthString = [NSString stringWithFormat:@"%d", wordLength];
+  
+  // extract array of words with the specified length and set as |activeWords|
+  NSMutableArray *activeWords = [[NSMutableArray alloc] initWithArray:[self.sortedWords objectForKey:wordLengthString]];
+  self.activeWords = activeWords;
+  */
+  
+  // TODO: replace this with user input
+  NSString *letter = @"e";
+
+  // instantiate a game using the evil gameplay
+  EvilGameplay *game = [[EvilGameplay alloc] init];
+  NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:[game playLetter:letter withArray:self.activeWords]];
+  // set |activeWords| as the new subset of words from the model method
+  [self.activeWords removeAllObjects];
+  [self.activeWords addObjectsFromArray:tempArray];
+
+  // check if new array of words contains the letter
+  if ([[self.activeWords objectAtIndex:1] rangeOfString:letter].location!=NSNotFound){
+    //NSLog(@"There is an E!");
+  }
+  else {
+    //NSLog(@"There is not an E!");
+}
+  
+}
 
 /*
 

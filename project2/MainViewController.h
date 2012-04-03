@@ -21,6 +21,6 @@
 
 - (IBAction)showInfo:(id)sender;
 - (void)startGame;
-- (void)playLetter:(NSString*)letter;
+- (IBAction)play:(id)sender;
 
 @end
