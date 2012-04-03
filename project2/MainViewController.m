@@ -182,4 +182,15 @@
   [self presentModalViewController:controller animated:YES];
 }
 
+// mike's stuff
+@synthesize label = _label;
+@synthesize textField = _textField;
+@synthesize button = _button;
+
+- (void)buttonPressed:(id)sender
+{
+  self.label.text = self.textField.text;
+  self.textField.text = @"";
+}
+
 @end

@@ -19,6 +19,14 @@
 @property (nonatomic, strong) NSMutableDictionary *sortedWords;
 @property (nonatomic, strong) NSMutableArray *activeWords;
 
+
+@property (nonatomic, strong) IBOutlet UILabel* label;
+@property (nonatomic, strong) IBOutlet UITextField* textField;
+@property (nonatomic, strong) IBOutlet UIButton* button;
+
+- (IBAction)buttonPressed:(id)sender;
+
+
 - (IBAction)showInfo:(id)sender;
 - (void)startGame;
 - (IBAction)play:(id)sender;
