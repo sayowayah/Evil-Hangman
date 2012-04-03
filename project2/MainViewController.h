@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) NSMutableDictionary *sortedWords;
 @property (nonatomic, strong) NSMutableArray *activeWords;
+@property (nonatomic, assign) int maxGuesses;
 
 
 @property (nonatomic, strong) IBOutlet UILabel* label;

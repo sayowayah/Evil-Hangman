@@ -17,6 +17,7 @@
 
 @synthesize sortedWords = _sortedWords;
 @synthesize activeWords = _activeWords;
+@synthesize maxGuesses = _maxGuesses;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,7 +60,7 @@
 }
 
 - (void)startGame {
-  // TODO: reset counter to 0
+  self.maxGuesses = [[NSUserDefaults standardUserDefaults] integerForKey:@"maxGuesses"];
   
   int wordLength = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
 
@@ -117,36 +118,32 @@
   // check if new array of words contains the letter
   if ([[[self.activeWords objectAtIndex:1] lowercaseString] rangeOfString:letter].location!=NSNotFound){
     // update the blanks to reflect the new word
+    
+    // take the first activeword
+    NSString *word = [[self.activeWords objectAtIndex:0] lowercaseString];
+    
+    // iterate through word
+    for (int j=0; j<word.length; j++) {
       
-      // take the first activeword
-      NSString *word = [[self.activeWords objectAtIndex:0] lowercaseString];
-              
-      // iterate through word
-      for (int j=0; j<word.length; j++) {
-          
-          NSLog(@"blank");
-          
-          char letterToCheck = [word characterAtIndex:j];
-          char letterChar = [letter characterAtIndex:0];
-          
-          if (letterToCheck == letterChar) {
-              
-              // to account for spaces, multiply by 2.  But also check if its in the first position (since you can't multiply by zero)
-              NSRange range = NSMakeRange(j * 2,1);
-              
-              if (j == 0) {
-                  range = NSMakeRange(j,1);	
-              }
-          
-              self.label.text = [self.label.text stringByReplacingCharactersInRange:range withString:letter];
-            
-          }
+      NSLog(@"blank");
+      
+      char letterToCheck = [word characterAtIndex:j];
+      char letterChar = [letter characterAtIndex:0];
+      
+      if (letterToCheck == letterChar) {
+        
+        // to account for spaces, multiply by 2.  But also check if its in the first position (since you can't multiply by zero)
+        NSRange range = NSMakeRange(j * 2,1);
+        
+        if (j == 0) {
+          range = NSMakeRange(j,1);	
+        }
+        self.label.text = [self.label.text stringByReplacingCharactersInRange:range withString:letter];
       }
-      
-      NSLog(@"There is an E!");
+    }
   }
   else {
-    NSLog(@"There is not an E!");
+    self.maxGuesses -= 1;
 }
     
     // clear out the textfield
