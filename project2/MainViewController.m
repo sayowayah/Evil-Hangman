@@ -75,10 +75,22 @@
 
 }
 
+// mike's stuff
+@synthesize label = _label;
+@synthesize textField = _textField;
+@synthesize button = _button;
+
+- (void)buttonPressed:(id)sender
+{
+    self.label.text = self.textField.text;
+    self.textField.text = @"";
+}
+
+
 
 - (IBAction)play:(id)sender{
 
-  /*
+  
   int wordLength = 4;
   // cast word length int into a NSString, which is the type of the keys in sortedWords dictionary
   NSString *wordLengthString = [NSString stringWithFormat:@"%d", wordLength];
@@ -86,11 +98,15 @@
   // extract array of words with the specified length and set as |activeWords|
   NSMutableArray *activeWords = [[NSMutableArray alloc] initWithArray:[self.sortedWords objectForKey:wordLengthString]];
   self.activeWords = activeWords;
-  */
+  
   
   // TODO: replace this with user input
-  NSString *letter = @"e";
+  NSString *letter = [self.textField.text lowercaseString];
+  //NSString *letter = self.textField.text;
 
+  //NSLog( printf%s, letter) );
+  NSLog(@"letter entered: %@",letter);
+    
   // instantiate a game using the evil gameplay
   EvilGameplay *game = [[EvilGameplay alloc] init];
   NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:[game playLetter:letter withArray:self.activeWords]];
@@ -100,11 +116,41 @@
 
   // check if new array of words contains the letter
   if ([[[self.activeWords objectAtIndex:1] lowercaseString] rangeOfString:letter].location!=NSNotFound){
-    NSLog(@"There is an E!");
+    // update the blanks to reflect the new word
+      
+      // take the first activeword
+      NSString *word = [[self.activeWords objectAtIndex:0] lowercaseString];
+              
+      // iterate through word
+      for (int j=0; j<word.length; j++) {
+          
+          NSLog(@"blank");
+          
+          char letterToCheck = [word characterAtIndex:j];
+          char letterChar = [letter characterAtIndex:0];
+          
+          if (letterToCheck == letterChar) {
+              
+              // to account for spaces, multiply by 2.  But also check if its in the first position (since you can't multiply by zero)
+              NSRange range = NSMakeRange(j * 2,1);
+              
+              if (j == 0) {
+                  range = NSMakeRange(j,1);	
+              }
+          
+              self.label.text = [self.label.text stringByReplacingCharactersInRange:range withString:letter];
+            
+          }
+      }
+      
+      NSLog(@"There is an E!");
   }
   else {
     NSLog(@"There is not an E!");
 }
+    
+    // clear out the textfield
+    self.textField.text = @"";
   
 }
 
@@ -191,15 +237,11 @@
   [self presentModalViewController:controller animated:YES];
 }
 
-// mike's stuff
-@synthesize label = _label;
-@synthesize textField = _textField;
-@synthesize button = _button;
 
-- (void)buttonPressed:(id)sender
-{
-  self.label.text = self.textField.text;
-  self.textField.text = @"";
-}
+
+
+
+
+
 
 @end
