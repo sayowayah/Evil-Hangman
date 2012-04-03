@@ -27,11 +27,9 @@
 @property (nonatomic, weak) IBOutlet UIButton* button;
 @property (nonatomic, weak) IBOutlet UIProgressView* progress;
 
-- (IBAction)buttonPressed:(id)sender;
-
 
 - (IBAction)showInfo:(id)sender;
-- (void)startGame;
+- (IBAction)startGame:(id)sender;
 - (IBAction)play:(id)sender;
 
 @end

@@ -31,7 +31,7 @@
     
     // load plist file into array
     NSMutableArray *words = [[NSMutableArray alloc] initWithContentsOfFile:
-                            [[NSBundle mainBundle] pathForResource:@"small" ofType:@"plist"]];
+                             [[NSBundle mainBundle] pathForResource:@"small" ofType:@"plist"]];
     
     
     
@@ -52,6 +52,8 @@
         [sortedWords setObject:array forKey:[NSString stringWithFormat:@"%d", [word length]]];
       }
     }
+    
+    
   }
   return self;
 }
@@ -59,18 +61,18 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-    [self startGame];
+  [self startGame:self];
   
 }
 
-- (void)startGame {
+- (IBAction)startGame:(id)sender {
   self.progress.progress = (float) 1.0;
   self.maxGuesses = [[NSUserDefaults standardUserDefaults] integerForKey:@"maxGuesses"];
   self.remainingGuesses = self.maxGuesses;
   
   
   int wordLength = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
-
+  
   // TODO: dynamically create slots based on |wordLength|
   self.label.text = @"_ _ _ _";
   
@@ -80,47 +82,28 @@
   // extract array of words with the specified length and set as |activeWords|
   NSMutableArray *activeWords = [[NSMutableArray alloc] initWithArray:[self.sortedWords objectForKey:wordLengthString]];
   self.activeWords = activeWords;
-
+  
 }
 
 
 
-- (void)buttonPressed:(id)sender
-{
-    self.label.text = self.textField.text;
-    self.textField.text = @"";
-}
-
-
-
-- (IBAction)play:(id)sender{
-
-  
-  int wordLength = 4;
-  // cast word length int into a NSString, which is the type of the keys in sortedWords dictionary
-  NSString *wordLengthString = [NSString stringWithFormat:@"%d", wordLength];
-  
-  // extract array of words with the specified length and set as |activeWords|
-  NSMutableArray *activeWords = [[NSMutableArray alloc] initWithArray:[self.sortedWords objectForKey:wordLengthString]];
-  self.activeWords = activeWords;
+- (IBAction)play:(id)sender {
   
   
-  // TODO: replace this with user input
+  // get letter from user input
   NSString *letter = [self.textField.text lowercaseString];
-  //NSString *letter = self.textField.text;
-
-  //NSLog( printf%s, letter) );
+  
   NSLog(@"letter entered: %@",letter);
-    
+  
   // instantiate a game using the evil gameplay
   EvilGameplay *game = [[EvilGameplay alloc] init];
   NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:[game playLetter:letter withArray:self.activeWords]];
   // set |activeWords| as the new subset of words from the model method
   [self.activeWords removeAllObjects];
   [self.activeWords addObjectsFromArray:tempArray];
-
+  
   // check if new array of words contains the letter
-  if ([[[self.activeWords objectAtIndex:1] lowercaseString] rangeOfString:letter].location!=NSNotFound){
+  if ([[[self.activeWords objectAtIndex:0] lowercaseString] rangeOfString:letter].location!=NSNotFound){
     // update the blanks to reflect the new word
     
     // take the first activeword
@@ -139,6 +122,7 @@
         // to account for spaces, multiply by 2.  But also check if its in the first position (since you can't multiply by zero)
         NSRange range = NSMakeRange(j * 2,1);
         
+        // TODO: replace letter with a blank space
         if (j == 0) {
           range = NSMakeRange(j,1);	
         }
@@ -150,81 +134,21 @@
     
     // calculate the % remaining
     float progressDecimal = (float) (self.remainingGuesses - 1) / (float) self.maxGuesses;
-      
-
-      
+    
     // update the progress indicator  
     self.progress.progress = progressDecimal;
-      
+    
     // update remaining guesses  
     self.remainingGuesses--;
-}
-    
-    // clear out the textfield
-    self.textField.text = @"";
-  
-}
-
-/*
-
-- (void)playLetter:(NSString *)letter{
-  
-  NSMutableDictionary *equivalenceClasses = [[NSMutableDictionary alloc] init];
-  
-  // iterate through each word in the |activeWords| array
-  for (NSString *word in self.activeWords){
-    
-    
-    // |classValue| is a "binary" number based on if the inputted letter exists at each character index in word
-    NSInteger classValue = 0;
-    // calculate |classValue| of word by iterating through string length
-    for (int charIndex=0; charIndex < word.length; charIndex++){
-      if([[letter lowercaseString] isEqualToString:[[word substringWithRange: NSMakeRange(charIndex,1)] lowercaseString]]){
-        classValue += (NSInteger)pow(2.0,(double)charIndex);
-      }
-    }
-    
-    // insert word into equivalence class with |classValue|, cast as a string, as the key
-    NSString *classValueString = [NSString stringWithFormat:@"%d", classValue];    
-    if ([equivalenceClasses objectForKey:classValueString]){
-      // add word to the array in the dictionary
-      [[equivalenceClasses objectForKey:classValueString] addObject:word];
-    }
-    else{
-      // create new array with word and add key value pair to dictionary
-      NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:word, nil];
-      [equivalenceClasses setObject:array forKey:classValueString];
-    }
   }
   
+  // clear out the textfield
+  self.textField.text = @"";
   
-  // choose the largest equivalence class
-  NSInteger maxSize = 0;
-  NSString *keyOfLargestClass;
-  for (id key in equivalenceClasses) {
-    if ((NSInteger) [[equivalenceClasses objectForKey:key] count] > maxSize){
-      maxSize = [[equivalenceClasses objectForKey:key] count];   
-      keyOfLargestClass = key;
-    }
-    // break ties with random number generators
-    else if((NSInteger)[[equivalenceClasses objectForKey:key] count] == maxSize) {
-      int random1 = arc4random();
-      int random2 = arc4random();
-      if (random1 > random2){
-        maxSize = [[equivalenceClasses objectForKey:key] count];   
-        keyOfLargestClass = key;
-      }
-    }
-  }
-  
-  // set largest equivalence class as |activeWords|
-  self.activeWords = [equivalenceClasses objectForKey:keyOfLargestClass];  
-  
-  // update UI   
-  
-  
+  // hide keyboard
+  [self.textField resignFirstResponder];
 }
-*/
+
 
 - (void)viewDidUnload {
   [super viewDidUnload];
@@ -247,12 +171,6 @@
   controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
   [self presentModalViewController:controller animated:YES];
 }
-
-
-
-
-
-
 
 
 @end
