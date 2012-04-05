@@ -163,9 +163,13 @@
         NSRange range = NSMakeRange(j * 2,1);
         if (j == 0) {
           range = NSMakeRange(j,1);	
+          // capitalize first letter
+          self.label.text = [self.label.text stringByReplacingCharactersInRange:range withString:[letter uppercaseString]];
         }        
-        self.label.text = [self.label.text stringByReplacingCharactersInRange:range withString:letter];
-
+        else {
+          self.label.text = [self.label.text stringByReplacingCharactersInRange:range withString:letter];
+        }
+        
         // add count to |rightLetters|
         self.rightLetters++;
       }
