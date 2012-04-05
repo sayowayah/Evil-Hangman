@@ -116,7 +116,6 @@
 
 
 - (IBAction)play:(id)sender {
-  // TODO: for wins, add in congrats  
   
   // Replace chosen letter in the letter list with blank space
   NSString *updatedLetterList = [self.letterList.text stringByReplacingOccurrencesOfString:[self.textField.text uppercaseString] withString:@" "];
