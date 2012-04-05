@@ -26,6 +26,9 @@
 @property (nonatomic, weak) IBOutlet UITextField* textField;
 @property (nonatomic, weak) IBOutlet UIButton* button;
 @property (nonatomic, weak) IBOutlet UIProgressView* progress;
+@property (nonatomic, weak) IBOutlet UILabel* letterList;
+@property (nonatomic, weak) IBOutlet UILabel* evil;
+@property (nonatomic, weak) IBOutlet UILabel* evilInsert;
 
 
 - (IBAction)showInfo:(id)sender;

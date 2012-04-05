@@ -23,6 +23,9 @@
 @synthesize textField = _textField;
 @synthesize button = _button;
 @synthesize progress = _progress;
+@synthesize letterList = _letterList;
+@synthesize evil = _evil;
+@synthesize evilInsert = _evilInsert;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,7 +34,7 @@
     
     // load plist file into array
     NSMutableArray *words = [[NSMutableArray alloc] initWithContentsOfFile:
-                             [[NSBundle mainBundle] pathForResource:@"small" ofType:@"plist"]];
+                             [[NSBundle mainBundle] pathForResource:@"words" ofType:@"plist"]];
     
     
     
@@ -73,9 +76,25 @@
   
   int wordLength = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
   
-  // TODO: dynamically create slots based on |wordLength|
-  self.label.text = @"_ _ _ _";
+  // dynamically create blank slots based on |wordLength|
+  NSMutableString *blanks= [[NSMutableString alloc] init ];
+  for (int i=0; i<wordLength; i++){
+    [blanks appendString:@"_ "];
+  }
+  self.label.text = blanks;
   
+  // reset letter list to full alphabet
+  self.letterList.text = @"A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
+  
+  // TODO: put this in the right place (i.e. settings) set mode to Good gameplay
+  //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"evilMode"];
+  //  [defaults synchronize];
+
+  if (![[NSUserDefaults standardUserDefaults] boolForKey:@"evilMode"]){
+    [self.evil setHidden:YES];
+    [self.evilInsert setHidden:YES];
+  }
+
   // cast word length int into a NSString, which is the type of the keys in sortedWords dictionary
   NSString *wordLengthString = [NSString stringWithFormat:@"%d", wordLength];
   
@@ -88,13 +107,18 @@
 
 
 - (IBAction)play:(id)sender {
+  // TODO: for wins, add in congrats  
   
-  
+  // Replace chosen letter in the letter list with blank space
+  NSString *updatedLetterList = [self.letterList.text stringByReplacingOccurrencesOfString:[self.textField.text uppercaseString] withString:@" "];
+  self.letterList.text = updatedLetterList;
+
   // get letter from user input
   NSString *letter = [self.textField.text lowercaseString];
   
   NSLog(@"letter entered: %@",letter);
   
+  // TODO: instantiate appropriate object based on Evil or Good setting
   // instantiate a game using the evil gameplay
   EvilGameplay *game = [[EvilGameplay alloc] init];
   NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:[game playLetter:letter withArray:self.activeWords]];
@@ -104,6 +128,7 @@
   
   // check if new array of words contains the letter
   if ([[[self.activeWords objectAtIndex:0] lowercaseString] rangeOfString:letter].location!=NSNotFound){
+    
     // update the blanks to reflect the new word
     
     // take the first activeword
@@ -121,11 +146,10 @@
         
         // to account for spaces, multiply by 2.  But also check if its in the first position (since you can't multiply by zero)
         NSRange range = NSMakeRange(j * 2,1);
-        
-        // TODO: replace letter with a blank space
         if (j == 0) {
           range = NSMakeRange(j,1);	
         }
+        
         self.label.text = [self.label.text stringByReplacingCharactersInRange:range withString:letter];
       }
     }
@@ -140,6 +164,18 @@
     
     // update remaining guesses  
     self.remainingGuesses--;
+    
+    // if remaining guess = 0, show finish screen
+    if (self.remainingGuesses == 0){
+      NSString *word = [NSString stringWithFormat:@"The word was %@", [self.activeWords objectAtIndex:0]];
+      //      NSString *word = [self.activeWords objectAtIndex:0];
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You lose!" 
+                                                      message:word
+                                                     delegate:self 
+                                            cancelButtonTitle:@"Restart" 
+                                            otherButtonTitles:nil];
+      [alert show];
+    }
   }
   
   // clear out the textfield
@@ -147,6 +183,12 @@
   
   // hide keyboard
   [self.textField resignFirstResponder];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+  // restart game
+  [self startGame:self];
 }
 
 
