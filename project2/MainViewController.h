@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *activeWords;
 @property (nonatomic, assign) int maxGuesses;
 @property (nonatomic, assign) int remainingGuesses;
+@property (nonatomic, assign) int rightLetters;
 
 
 @property (nonatomic, weak) IBOutlet UILabel* label;

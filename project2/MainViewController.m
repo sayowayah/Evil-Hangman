@@ -19,6 +19,7 @@
 @synthesize activeWords = _activeWords;
 @synthesize maxGuesses = _maxGuesses;
 @synthesize remainingGuesses = _remainingGuesses;
+@synthesize rightLetters = _rightLetters;
 @synthesize label = _label;
 @synthesize textField = _textField;
 @synthesize button = _button;
@@ -69,9 +70,17 @@
 }
 
 - (IBAction)startGame:(id)sender {
+  // reset progress bar
   self.progress.progress = (float) 1.0;
+
+  // set |maxGuesses| based on settings
   self.maxGuesses = [[NSUserDefaults standardUserDefaults] integerForKey:@"maxGuesses"];
+
+  // reset |remainingGuesses| to max guesses
   self.remainingGuesses = self.maxGuesses;
+  
+  // reset |rightLetters| to zero
+  self.rightLetters = 0;
   
   
   int wordLength = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
@@ -117,12 +126,21 @@
   NSString *letter = [self.textField.text lowercaseString];
   
   NSLog(@"letter entered: %@",letter);
-  
-  // TODO: instantiate appropriate object based on Evil or Good setting
-  // instantiate a game using the evil gameplay
+
+  // TEMP: remove this once instantiation of good gameplay is implemented below
   EvilGameplay *game = [[EvilGameplay alloc] init];
+  
+  // instantiate a gameplay using good or evil
+  if ([[NSUserDefaults standardUserDefaults] boolForKey:@"evilMode"]){
+    // TEMP: uncomment when below is implemented   
+    // EvilGameplay *game = [[EvilGameplay alloc] init];
+  }
+  else {
+    // TODO: instantiate good gameplay 
+  }
+  
+  // set |activeWords| as the new subset of words from the model method  
   NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:[game playLetter:letter withArray:self.activeWords]];
-  // set |activeWords| as the new subset of words from the model method
   [self.activeWords removeAllObjects];
   [self.activeWords addObjectsFromArray:tempArray];
   
@@ -130,14 +148,12 @@
   if ([[[self.activeWords objectAtIndex:0] lowercaseString] rangeOfString:letter].location!=NSNotFound){
     
     // update the blanks to reflect the new word
-    
     // take the first activeword
     NSString *word = [[self.activeWords objectAtIndex:0] lowercaseString];
+    int wordLength = word.length;
     
     // iterate through word
-    for (int j=0; j<word.length; j++) {
-      
-      NSLog(@"blank");
+    for (int j=0; j<wordLength; j++) {
       
       char letterToCheck = [word characterAtIndex:j];
       char letterChar = [letter characterAtIndex:0];
@@ -148,10 +164,21 @@
         NSRange range = NSMakeRange(j * 2,1);
         if (j == 0) {
           range = NSMakeRange(j,1);	
-        }
-        
+        }        
         self.label.text = [self.label.text stringByReplacingCharactersInRange:range withString:letter];
+
+        // add count to |rightLetters|
+        self.rightLetters++;
       }
+    }
+    // show congrats alert if |rightLetters| equals length of word
+    if (self.rightLetters == wordLength){
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congrats!!" 
+                                                      message:@"You win!"
+                                                     delegate:self 
+                                            cancelButtonTitle:@"Restart" 
+                                            otherButtonTitles:nil];
+      [alert show];      
     }
   }
   else {

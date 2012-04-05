@@ -28,7 +28,7 @@
     // do any other initialization you want to do here - e.g. the starting default values.    
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"evilMode"];
     [[NSUserDefaults standardUserDefaults] setInteger:4 forKey:@"wordLength"];
-    [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"maxGuesses"];
+    [[NSUserDefaults standardUserDefaults] setInteger:30 forKey:@"maxGuesses"];
     
     // sync the defaults to disk
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
