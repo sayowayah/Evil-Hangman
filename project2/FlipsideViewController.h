@@ -17,7 +17,15 @@
 @interface FlipsideViewController : UIViewController
 
 @property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet UISwitch *evilSwitch;
+@property (nonatomic, weak) IBOutlet UILabel *wordLengthLabel;
+@property (nonatomic, weak) IBOutlet UILabel *maxGuessLabel;
+@property (nonatomic, weak) IBOutlet UISlider *wordLength;
+@property (nonatomic, weak) IBOutlet UISlider *maxGuess;
 
 - (IBAction)done:(id)sender;
+- (IBAction)evilToggle:(id)sender;
+- (IBAction)adjustWordLength:(id)sender;
+- (IBAction)adjustMaxGuess:(id)sender;
 
 @end

@@ -103,6 +103,10 @@
     [self.evil setHidden:YES];
     [self.evilInsert setHidden:YES];
   }
+  else {
+    [self.evil setHidden:NO];
+    [self.evilInsert setHidden:NO];
+  }
 
   // cast word length int into a NSString, which is the type of the keys in sortedWords dictionary
   NSString *wordLengthString = [NSString stringWithFormat:@"%d", wordLength];
@@ -243,6 +247,8 @@
   controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
   [self presentModalViewController:controller animated:YES];
 }
+
+
 
 
 @end
