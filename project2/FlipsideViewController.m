@@ -23,8 +23,16 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+  // load saved settings and update the UI
   self.evilSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"evilMode"];
+  int wordLengthInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
+  self.wordLength.value = (float) wordLengthInt;
+  self.wordLengthLabel.text = [NSString stringWithFormat:@"%d letters", wordLengthInt]; 
+  int maxGuessInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"maxGuesses"];
+  self.maxGuess.value = (float) maxGuessInt;
+  self.maxGuessLabel.text = [NSString stringWithFormat:@"%d guesses", maxGuessInt]; 
+  
 }
 
 - (void)viewDidUnload {
@@ -43,6 +51,7 @@
 }
 
 - (IBAction)evilToggle:(id)sender {
+  // changes the evilMode setting depending on value of the toggle
   if (self.evilSwitch.on) {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"evilMode"];
     [[NSUserDefaults standardUserDefaults] synchronize];    
@@ -54,10 +63,19 @@
 }
 
 - (IBAction)adjustWordLength:(id)sender {
+  // changes the wordLength setting and updates UI label
   int wordLengthInt = (int) self.wordLength.value;
   [[NSUserDefaults standardUserDefaults] setInteger:wordLengthInt forKey:@"wordLength"];
   [[NSUserDefaults standardUserDefaults] synchronize];
   self.wordLengthLabel.text = [NSString stringWithFormat:@"%d letters", wordLengthInt]; 
+}
+
+- (IBAction)adjustMaxGuess:(id)sender {
+  // changes the maxGuesses settting and updates UI label
+  int maxGuessInt = (int) self.maxGuess.value;
+  [[NSUserDefaults standardUserDefaults] setInteger:maxGuessInt forKey:@"maxGuesses"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  self.maxGuessLabel.text = [NSString stringWithFormat:@"%d guesses", maxGuessInt];   
 }
 
 

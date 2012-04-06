@@ -56,10 +56,17 @@
         [sortedWords setObject:array forKey:[NSString stringWithFormat:@"%d", [word length]]];
       }
     }
-    
-    
+
   }
-  return self;
+return self;
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField{
+  // enable GO button on keyboard to enter letter
+  if (textField == self.textField){
+    [self play:self];    
+  }
+  return YES;
 }
 
 
@@ -127,6 +134,17 @@
 
   // get letter from user input
   NSString *letter = [self.textField.text lowercaseString];
+
+  // error alert if more than one letter submitted
+  if (letter.length > 1) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nope!" 
+                                                    message:@"Can't enter more than one letter" 
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Try again" 
+                                          otherButtonTitles:nil];
+    [alert show];
+    return;
+  }
   
   NSLog(@"letter entered: %@",letter);
 

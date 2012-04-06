@@ -14,7 +14,7 @@
 
 @end
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary *sortedWords;
 @property (nonatomic, strong) NSMutableArray *activeWords;
