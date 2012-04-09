@@ -37,7 +37,9 @@
     NSMutableArray *words = [[NSMutableArray alloc] initWithContentsOfFile:
                              [[NSBundle mainBundle] pathForResource:@"words" ofType:@"plist"]];
     
+    // TODO: dynamically get the max length of words to put in settings
     
+
     
     // create dictionary to store array of words with word length as key
     NSMutableDictionary *sortedWords = [[NSMutableDictionary alloc] init];
@@ -55,6 +57,10 @@
         NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:word, nil];
         [sortedWords setObject:array forKey:[NSString stringWithFormat:@"%d", [word length]]];
       }
+    // Future TODO: add support for "holes" in the dataset, e.g. no words of length 9 exist. 
+    // Proposal: create array of keys. Slider has max value of this array length. Slider value indexes into this array of keys.
+    
+    
     }
 
   }
@@ -101,10 +107,6 @@ return self;
   
   // reset letter list to full alphabet
   self.letterList.text = @"A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
-  
-  // TODO: put this in the right place (i.e. settings) set mode to Good gameplay
-  //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"evilMode"];
-  //  [defaults synchronize];
 
   if (![[NSUserDefaults standardUserDefaults] boolForKey:@"evilMode"]){
     [self.evil setHidden:YES];
@@ -145,6 +147,9 @@ return self;
     [alert show];
     return;
   }
+  
+  // TODO: ignore/throw error if non-alphabet character, empty input, or already chosen letter is submitted
+  
   
   NSLog(@"letter entered: %@",letter);
 

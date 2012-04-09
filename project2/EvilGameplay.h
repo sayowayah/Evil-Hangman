@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MainViewController.h"
+#import "MainViewController.h" // TODO: after moving protocol declaration to new .h file, need to import it here
 
 @interface EvilGameplay : NSObject<StrategyDelegate>
 

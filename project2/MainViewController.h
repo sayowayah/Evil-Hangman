@@ -8,7 +8,7 @@
 
 #import "FlipsideViewController.h"
 
-@protocol StrategyDelegate
+@protocol StrategyDelegate // TODO: rename and specs say to move this to a separate .h file
 
 - (NSMutableArray*)playLetter:(NSString*)letter withArray:(NSMutableArray*)array;
 
