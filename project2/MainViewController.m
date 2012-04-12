@@ -37,17 +37,22 @@
     NSMutableArray *words = [[NSMutableArray alloc] initWithContentsOfFile:
                              [[NSBundle mainBundle] pathForResource:@"words" ofType:@"plist"]];
     
-    // TODO: dynamically get the max length of words to put in settings
-    
-
     
     // create dictionary to store array of words with word length as key
     NSMutableDictionary *sortedWords = [[NSMutableDictionary alloc] init];
     self.sortedWords = sortedWords;
+    NSUInteger maxWordLength = 0;
     
     for (NSString *word in words) {
       // create NSString object of word length to serve as keys
-      NSString *intString = [NSString stringWithFormat:@"%d", [word length]];
+      NSUInteger wordLength = [word length];
+      NSString *intString = [NSString stringWithFormat:@"%d", wordLength];
+
+      // keep track of longest word to use in settings view
+      if (wordLength > maxWordLength){
+        maxWordLength = wordLength;
+      }
+      
       if ([sortedWords objectForKey:intString]){
         // add word to the array in the dictionary
         [[sortedWords objectForKey:intString] addObject:word];
@@ -57,12 +62,16 @@
         NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:word, nil];
         [sortedWords setObject:array forKey:[NSString stringWithFormat:@"%d", [word length]]];
       }
-    // Future TODO: add support for "holes" in the dataset, e.g. no words of length 9 exist. 
+
+      // Future TODO: add support for "holes" in the dataset, e.g. no words of length 9 exist. 
     // Proposal: create array of keys. Slider has max value of this array length. Slider value indexes into this array of keys.
     
-    
+      
     }
-
+    
+    // save the length of longest word to use in settings view
+    [[NSUserDefaults standardUserDefaults] setInteger:maxWordLength forKey:@"maxWordLength"];
+    
   }
 return self;
 }

@@ -29,6 +29,7 @@
   int wordLengthInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
   self.wordLength.value = (float) wordLengthInt;
   self.wordLengthLabel.text = [NSString stringWithFormat:@"%d letters", wordLengthInt]; 
+  self.wordLength.maximumValue = (float) [[NSUserDefaults standardUserDefaults] integerForKey:@"maxWordLength"];
   int maxGuessInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"maxGuesses"];
   self.maxGuess.value = (float) maxGuessInt;
   self.maxGuessLabel.text = [NSString stringWithFormat:@"%d guesses", maxGuessInt]; 
