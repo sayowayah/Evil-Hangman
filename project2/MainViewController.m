@@ -139,9 +139,6 @@ return self;
 
 - (IBAction)play:(id)sender {
   
-  // Replace chosen letter in the letter list with blank space
-  NSString *updatedLetterList = [self.letterList.text stringByReplacingOccurrencesOfString:[self.textField.text uppercaseString] withString:@" "];
-  self.letterList.text = updatedLetterList;
 
   // get letter from user input
   NSString *letter = [self.textField.text lowercaseString];
@@ -153,14 +150,54 @@ return self;
                                                    delegate:self 
                                           cancelButtonTitle:@"Try again" 
                                           otherButtonTitles:nil];
+    [alert setTitle:@"InputError"];
     [alert show];
     return;
   }
+  // error alert if blank is submitted
+  if (letter.length == 0) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Umm..." 
+                                                    message:@"Please enter a letter" 
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Try again" 
+                                          otherButtonTitles:nil];
+    [alert setTitle:@"InputError"];
+    [alert show];
+    return;    
+  }
   
-  // TODO: ignore/throw error if non-alphabet character, empty input, or already chosen letter is submitted
+  // error alert if non-alphabet character is submitted  
+
+  // create set of alphabet letters
+  NSCharacterSet *lowerCaseLetters = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyz"];
+  if([letter rangeOfCharacterFromSet:lowerCaseLetters].location == NSNotFound) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nope!" 
+                                                    message:@"Only enter letters please" 
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Try again" 
+                                          otherButtonTitles:nil];
+    [alert setTitle:@"InputError"];
+    [alert show];
+    return;
+  }
+
+  // error alert if letter already entered
+  if ([[letter uppercaseString] rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:self.letterList.text]].location == NSNotFound){
+    NSString *message = [NSString stringWithFormat:@"You have already entered %@", letter];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Umm..." 
+                                                    message:message
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Try again" 
+                                          otherButtonTitles:nil];
+    [alert setTitle:@"InputError"];
+    [alert show];
+    return;     
+  }
+
   
-  
-  NSLog(@"letter entered: %@",letter);
+  // Replace chosen letter in the letter list with blank space
+  NSString *updatedLetterList = [self.letterList.text stringByReplacingOccurrencesOfString:[self.textField.text uppercaseString] withString:@" "];
+  self.letterList.text = updatedLetterList;  
 
   // TEMP: remove this once instantiation of good gameplay is implemented below
   EvilGameplay *game = [[EvilGameplay alloc] init];
@@ -217,6 +254,7 @@ return self;
                                                      delegate:self 
                                             cancelButtonTitle:@"Restart" 
                                             otherButtonTitles:nil];
+      [alert setTitle:@"GameOver"];
       [alert show];      
     }
   }
@@ -240,6 +278,7 @@ return self;
                                                      delegate:self 
                                             cancelButtonTitle:@"Restart" 
                                             otherButtonTitles:nil];
+      [alert setTitle:@"GameOver"];
       [alert show];
     }
   }
@@ -253,8 +292,11 @@ return self;
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-  // restart game
-  [self startGame:self];
+  // restart game if lose screen
+  if ([alertView.title isEqualToString:@"GameOver"]) {
+    [self startGame:self];    
+  }
+
 }
 
 
