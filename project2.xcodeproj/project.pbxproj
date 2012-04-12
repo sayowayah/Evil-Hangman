@@ -64,6 +64,7 @@
 		154F400A151C7B7D00C09707 /* project2Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = project2Tests.h; sourceTree = "<group>"; };
 		154F400B151C7B7D00C09707 /* project2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = project2Tests.m; sourceTree = "<group>"; };
 		1582FA5B152A30D500289C85 /* small.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = small.plist; sourceTree = "<group>"; };
+		15DA7A50153798E4001E8074 /* GameplayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,10 +126,11 @@
 			children = (
 				154F3FE9151C7B7D00C09707 /* AppDelegate.h */,
 				154F3FEA151C7B7D00C09707 /* AppDelegate.m */,
-				154F3FEC151C7B7D00C09707 /* MainViewController.h */,
-				154F3FED151C7B7D00C09707 /* MainViewController.m */,
 				154F3FEF151C7B7D00C09707 /* FlipsideViewController.h */,
 				154F3FF0151C7B7D00C09707 /* FlipsideViewController.m */,
+				15DA7A50153798E4001E8074 /* GameplayDelegate.h */,
+				154F3FEC151C7B7D00C09707 /* MainViewController.h */,
+				154F3FED151C7B7D00C09707 /* MainViewController.m */,
 				154F3FF2151C7B7D00C09707 /* MainViewController.xib */,
 				154F3FF5151C7B7D00C09707 /* FlipsideViewController.xib */,
 				154F3FE1151C7B7D00C09707 /* Supporting Files */,

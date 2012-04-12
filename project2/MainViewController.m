@@ -8,6 +8,8 @@
 
 #import "MainViewController.h"
 #import "EvilGameplay.h"
+// TODO: uncomment below once GoodGameplay model is complete
+//#import "GoodGameplay.h"
 
 @interface MainViewController ()
 
@@ -209,6 +211,7 @@ return self;
   }
   else {
     // TODO: instantiate good gameplay 
+    // GoodGameplay *game = [[GoodGameplay alloc] init];
   }
   
   // set |activeWords| as the new subset of words from the model method  

@@ -14,8 +14,6 @@
   
   NSMutableDictionary *equivalenceClasses = [[NSMutableDictionary alloc] init];
   
-  // TODO: figure out how to access activeWords from the MainViewController
-  
   NSMutableArray *wordArray = [[NSMutableArray alloc] initWithArray:array];
   
   // iterate through each word in the |activeWords| array
@@ -63,8 +61,6 @@
       }
     }
   }
-
-  // TODO: update UI   
   
   
   // return largest equivalence class

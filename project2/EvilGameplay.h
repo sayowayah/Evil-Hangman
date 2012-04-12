@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MainViewController.h" // TODO: after moving protocol declaration to new .h file, need to import it here
+#import "GameplayDelegate.h"
 
-@interface EvilGameplay : NSObject<StrategyDelegate>
+@interface EvilGameplay : NSObject<GameplayDelegate>
 
 @end
