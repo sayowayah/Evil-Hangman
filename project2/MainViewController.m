@@ -152,7 +152,7 @@ return self;
                                                    delegate:self 
                                           cancelButtonTitle:@"Try again" 
                                           otherButtonTitles:nil];
-    [alert setTitle:@"InputError"];
+    [alert setTag:1];
     [alert show];
     return;
   }
@@ -163,7 +163,7 @@ return self;
                                                    delegate:self 
                                           cancelButtonTitle:@"Try again" 
                                           otherButtonTitles:nil];
-    [alert setTitle:@"InputError"];
+    [alert setTag:1];
     [alert show];
     return;    
   }
@@ -178,7 +178,7 @@ return self;
                                                    delegate:self 
                                           cancelButtonTitle:@"Try again" 
                                           otherButtonTitles:nil];
-    [alert setTitle:@"InputError"];
+    [alert setTag:1];
     [alert show];
     return;
   }
@@ -191,7 +191,7 @@ return self;
                                                    delegate:self 
                                           cancelButtonTitle:@"Try again" 
                                           otherButtonTitles:nil];
-    [alert setTitle:@"InputError"];
+    [alert setTag:1];
     [alert show];
     return;     
   }
@@ -257,7 +257,7 @@ return self;
                                                      delegate:self 
                                             cancelButtonTitle:@"Restart" 
                                             otherButtonTitles:nil];
-      [alert setTitle:@"GameOver"];
+      [alert setTag:2];
       [alert show];      
     }
   }
@@ -281,7 +281,7 @@ return self;
                                                      delegate:self 
                                             cancelButtonTitle:@"Restart" 
                                             otherButtonTitles:nil];
-      [alert setTitle:@"GameOver"];
+      [alert setTag:2];
       [alert show];
     }
   }
@@ -295,8 +295,8 @@ return self;
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-  // restart game if lose screen
-  if ([alertView.title isEqualToString:@"GameOver"]) {
+  // restart game if end game screen (win or lose)
+  if (alertView.tag == 2) {
     [self startGame:self];    
   }
 

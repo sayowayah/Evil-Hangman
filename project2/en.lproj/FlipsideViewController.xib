@@ -97,6 +97,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<float key="IBUIValue">4</float>
+						<float key="IBUIMinValue">1</float>
 						<float key="IBUIMaxValue">27</float>
 						<reference key="IBUIMinimumTrackTintColor" ref="633864452"/>
 					</object>
@@ -113,6 +114,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<float key="IBUIValue">4</float>
+						<float key="IBUIMinValue">1</float>
 						<float key="IBUIMaxValue">26</float>
 						<reference key="IBUIMinimumTrackTintColor" ref="633864452"/>
 					</object>
@@ -217,7 +219,6 @@
 						<string key="NSFrame">{{186, 379}, {114, 21}}</string>
 						<reference key="NSSuperview" ref="249263867"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
