@@ -20,10 +20,15 @@
 @synthesize maxGuessLabel = _maxGuessLabel;
 @synthesize maxGuess = _maxGuess;
 @synthesize wordLength = _wordLength;
+@synthesize highScores = _highScores;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
+  // load high scores
+    // put a dictonary or array into user defaults to store the values, then read them into self.highScores.text
+  
+  
   // load saved settings and update the UI
   self.evilSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"evilMode"];
   int wordLengthInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"wordLength"];
@@ -37,6 +42,7 @@
 }
 
 - (void)viewDidUnload {
+  [self setHighScores:nil];
   [super viewDidUnload];
   // Release any retained subviews of the main view.
 }
