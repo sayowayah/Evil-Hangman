@@ -22,10 +22,12 @@
 @property (nonatomic, weak) IBOutlet UILabel *maxGuessLabel;
 @property (nonatomic, weak) IBOutlet UISlider *wordLength;
 @property (nonatomic, weak) IBOutlet UISlider *maxGuess;
+@property (weak, nonatomic) IBOutlet UILabel *highScores;
 
 - (IBAction)done:(id)sender;
 - (IBAction)evilToggle:(id)sender;
 - (IBAction)adjustWordLength:(id)sender;
 - (IBAction)adjustMaxGuess:(id)sender;
+
 
 @end
