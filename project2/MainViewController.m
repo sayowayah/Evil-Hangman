@@ -8,8 +8,7 @@
 
 #import "MainViewController.h"
 #import "EvilGameplay.h"
-// TODO: uncomment below once GoodGameplay model is complete
-//#import "GoodGameplay.h"
+#import "GoodGameplay.h"
 
 @interface MainViewController ()
 
@@ -49,7 +48,7 @@
       // create NSString object of word length to serve as keys
       NSUInteger wordLength = [word length];
       NSString *intString = [NSString stringWithFormat:@"%d", wordLength];
-
+      
       // keep track of longest word to use in settings view
       if (wordLength > maxWordLength){
         maxWordLength = wordLength;
@@ -64,10 +63,10 @@
         NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:word, nil];
         [sortedWords setObject:array forKey:[NSString stringWithFormat:@"%d", [word length]]];
       }
-
+      
       // Future TODO: add support for "holes" in the dataset, e.g. no words of length 9 exist. 
-    // Proposal: create array of keys. Slider has max value of this array length. Slider value indexes into this array of keys.
-    
+      // Proposal: create array of keys. Slider has max value of this array length. Slider value indexes into this array of keys.
+      
       
     }
     
@@ -75,7 +74,7 @@
     [[NSUserDefaults standardUserDefaults] setInteger:maxWordLength forKey:@"maxWordLength"];
     
   }
-return self;
+  return self;
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField{
@@ -96,10 +95,10 @@ return self;
 - (IBAction)startGame:(id)sender {
   // reset progress bar
   self.progress.progress = (float) 1.0;
-
+  
   // set |maxGuesses| based on settings
   self.maxGuesses = [[NSUserDefaults standardUserDefaults] integerForKey:@"maxGuesses"];
-
+  
   // reset |remainingGuesses| to max guesses
   self.remainingGuesses = self.maxGuesses;
   
@@ -118,7 +117,7 @@ return self;
   
   // reset letter list to full alphabet
   self.letterList.text = @"A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
-
+  
   if (![[NSUserDefaults standardUserDefaults] boolForKey:@"evilMode"]){
     [self.evil setHidden:YES];
     [self.evilInsert setHidden:YES];
@@ -127,7 +126,7 @@ return self;
     [self.evil setHidden:NO];
     [self.evilInsert setHidden:NO];
   }
-
+  
   // cast word length int into a NSString, which is the type of the keys in sortedWords dictionary
   NSString *wordLengthString = [NSString stringWithFormat:@"%d", wordLength];
   
@@ -141,10 +140,10 @@ return self;
 
 - (IBAction)play:(id)sender {
   
-
+  
   // get letter from user input
   NSString *letter = [self.textField.text lowercaseString];
-
+  
   // error alert if more than one letter submitted
   if (letter.length > 1) {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nope!" 
@@ -169,7 +168,7 @@ return self;
   }
   
   // error alert if non-alphabet character is submitted  
-
+  
   // create set of alphabet letters
   NSCharacterSet *lowerCaseLetters = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyz"];
   if([letter rangeOfCharacterFromSet:lowerCaseLetters].location == NSNotFound) {
@@ -182,7 +181,7 @@ return self;
     [alert show];
     return;
   }
-
+  
   // error alert if letter already entered
   if ([[letter uppercaseString] rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:self.letterList.text]].location == NSNotFound){
     NSString *message = [NSString stringWithFormat:@"You have already entered %@", letter];
@@ -195,24 +194,21 @@ return self;
     [alert show];
     return;     
   }
-
+  
   
   // Replace chosen letter in the letter list with blank space
   NSString *updatedLetterList = [self.letterList.text stringByReplacingOccurrencesOfString:[self.textField.text uppercaseString] withString:@" "];
   self.letterList.text = updatedLetterList;  
-
-  // TEMP: remove this once instantiation of good gameplay is implemented below
-  EvilGameplay *game = [[EvilGameplay alloc] init];
   
-  // instantiate a gameplay using good or evil
-  if ([[NSUserDefaults standardUserDefaults] boolForKey:@"evilMode"]){
-    // TEMP: uncomment when below is implemented   
-    // EvilGameplay *game = [[EvilGameplay alloc] init];
+  // assume evil
+  EvilGameplay *game = [[EvilGameplay alloc] init];
+
+  // but check if you're good
+  if (![[NSUserDefaults standardUserDefaults] boolForKey:@"evilMode"]){
+    // TODO this should be GoodGameplay once that totally works
+    game = [[EvilGameplay alloc] init];
   }
-  else {
-    // TODO: instantiate good gameplay 
-    // GoodGameplay *game = [[GoodGameplay alloc] init];
-  }
+
   
   // set |activeWords| as the new subset of words from the model method  
   NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:[game playLetter:letter withArray:self.activeWords]];
@@ -299,7 +295,7 @@ return self;
   if (alertView.tag == 2) {
     [self startGame:self];    
   }
-
+  
 }
 
 
